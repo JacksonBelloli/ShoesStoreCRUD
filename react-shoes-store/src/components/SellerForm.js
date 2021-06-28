@@ -37,9 +37,9 @@ export default class SellerForm extends React.Component{
 
     submit = (event) => {
         event.preventDefault()
-        let seller = this.state        
-        
-        if (!this.props.selected == []){
+        let seller = this.state  
+        let selected = this.props.selected
+        if (!Array.isArray(selected) && !selected.lenght){
             this.props.put(seller)
         } else {
             this.props.post(seller)

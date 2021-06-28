@@ -30,6 +30,7 @@ export default class Client extends React.Component{
 
     saveClient = async (client) => {
         try{
+            console.log(client)
             let result = await Axios.post(this.BASE_URL, client)
             this.getAllClients()
         } catch (err){

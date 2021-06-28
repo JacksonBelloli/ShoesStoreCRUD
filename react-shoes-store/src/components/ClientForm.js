@@ -38,8 +38,8 @@ export default class ClientForm extends React.Component{
     submit = (event) => {
         event.preventDefault()
         let client = this.state        
-        
-        if (!this.props.selected == []){
+        let selected = this.props.selected
+        if (!Array.isArray(selected) && !selected.lenght){
             this.props.put(client)
         } else {
             this.props.post(client)

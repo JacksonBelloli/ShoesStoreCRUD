@@ -17,7 +17,7 @@ export default class ShoesForm extends React.Component{
                 modelo: "",
                 marca: "",
                 tamanho: 0,
-                quantidade: ""
+                quantidade: 0
             }     
         }
                    
@@ -31,8 +31,9 @@ export default class ShoesForm extends React.Component{
 
     submit = (event) => {
         event.preventDefault()
-        let shoe = this.state        
-        if (!this.props.selected == []){
+        let shoe = this.state
+        let selected = this.props.selected
+        if (!Array.isArray(selected) && !selected.lenght){
             this.props.put(shoe)
         } else {
             this.props.post(shoe)
@@ -42,7 +43,7 @@ export default class ShoesForm extends React.Component{
             modelo: "",
             marca: "",
             tamanho: 0,
-            quantidade: ""
+            quantidade: 0
         })
     }    
     
@@ -63,7 +64,7 @@ export default class ShoesForm extends React.Component{
                     </div>
                     <div class="mb-3">
                         <label for="quantidade" class="form-label">Quantidade</label>
-                        <input type="number" class="form-control" id="quantidade" onChange={this.handleInput} value={this.state.quantidade} name="quantidadeendereco" required/>
+                        <input type="number" class="form-control" id="quantidade" onChange={this.handleInput} value={this.state.quantidade} name="quantidade" required/>
                     </div>                       
                     <button type="submit" class="btn btn-primary">Enviar</button>
                 </form>                
