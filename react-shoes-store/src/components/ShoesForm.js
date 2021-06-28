@@ -1,29 +1,23 @@
 import React from 'react'
 
-export default class ClientForm extends React.Component{
+export default class ShoesForm extends React.Component{
     
     constructor(props){
         super(props)
         
         if (this.props.selected){
             this.state = {
-                nome: this.props.selected.nome,
-                data_nasc: this.props.selected.data_nasc,
-                cpf: this.props.selected.cpf,
-                endereco: this.props.selected.endereco,
-                cidade: this.props.selected.cidade,
-                estado: this.props.selected.estado,
-                cep: this.props.selected.cep
+                modelo: this.props.selected.modelo,
+                marca: this.props.selected.marca,
+                tamanho: this.props.selected.tamanho,
+                quantidade: this.props.selected.quantidade                
             }
         } else {
             this.state = {
-                nome: "",
-                data_nasc: "",
-                cpf: 0,
-                endereco: "",
-                cidade: "",
-                estado: "",
-                cep: 0
+                modelo: "",
+                marca: "",
+                tamanho: 0,
+                quantidade: ""
             }     
         }
                    
@@ -37,60 +31,41 @@ export default class ClientForm extends React.Component{
 
     submit = (event) => {
         event.preventDefault()
-        let client = this.state        
-        if (this.props.selected == []){
-            this.props.put(client)
+        let shoe = this.state        
+        if (!this.props.selected == []){
+            this.props.put(shoe)
         } else {
-            this.props.post(client)
+            this.props.post(shoe)
         }        
         
         this.setState({
-            nome: "",
-            data_nasc: "",
-            cpf: 0,
-            endereco: "",
-            cidade: "",
-            estado: "",
-            cep: ""
+            modelo: "",
+            marca: "",
+            tamanho: 0,
+            quantidade: ""
         })
     }    
     
-    render(){  
-        
-        let selecionado = this.props.selected ? this.props.selected._id : null
-
+    render(){          
         return(
                 <form onSubmit={this.submit}>
                     <div class="mb-3">
-                        <label for="nome" class="form-label">Nome</label>
-                        <input type="text" class="form-control" id="nome" onChange={this.handleInput} value={this.state.nome} name="nome" required/>                        
+                        <label for="modelo" class="form-label">Modelo</label>
+                        <input type="text" class="form-control" id="modelo" onChange={this.handleInput} value={this.state.modelo} name="modelo" required/>                        
                     </div>
                     <div class="mb-3">
-                        <label for="data_nasc" class="form-label">Data de Nascimento</label>
-                        <input type="date" class="form-control" id="data_nasc" onChange={this.handleInput} value={this.state.data_nasc} name="data_nasc" required/>
+                        <label for="marca" class="form-label">Marca</label>
+                        <input type="text" class="form-control" id="marca" onChange={this.handleInput} value={this.state.marca} name="marca" required/>
                     </div> 
                     <div class="mb-3">
-                        <label for="cpf" class="form-label">CPF</label>
-                        <input type="number" class="form-control" id="cpf" onChange={this.handleInput} value={this.state.cpf} name="cpf" required/>
+                        <label for="tamanho" class="form-label">Tamanho</label>
+                        <input type="number" class="form-control" id="tamanho" onChange={this.handleInput} value={this.state.tamanho} name="tamanho" required/>
                     </div>
                     <div class="mb-3">
-                        <label for="endereco" class="form-label">Endereço</label>
-                        <input type="text" class="form-control" id="endereco" onChange={this.handleInput} value={this.state.endereco} name="endereco" required/>
-                    </div>   
-                    <div class="mb-3">
-                        <label for="cidade" class="form-label">Cidade</label>
-                        <input type="text" class="form-control" id="cidade" onChange={this.handleInput} value={this.state.cidade} name="cidade" required/>
-                    </div> 
-                    <div class="mb-3">
-                        <label for="estado" class="form-label">Estado</label>
-                        <input type="text" class="form-control" id="estado" onChange={this.handleInput} value={this.state.estado} name="estado" required/>
-                    </div>
-                    <div class="mb-3">
-                        <label for="cep" class="form-label">CEP</label>
-                        <input type="number" class="form-control" id="cep" onChange={this.handleInput} value={this.state.cep} name="cep" required/>
-                    </div>                   
+                        <label for="quantidade" class="form-label">Quantidade</label>
+                        <input type="number" class="form-control" id="quantidade" onChange={this.handleInput} value={this.state.quantidade} name="quantidadeendereco" required/>
+                    </div>                       
                     <button type="submit" class="btn btn-primary">Enviar</button>
-                    {selecionado}
                 </form>                
         )
     }

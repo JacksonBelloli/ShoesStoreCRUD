@@ -20,7 +20,7 @@ export default class Header extends React.Component{
                                 <a class="nav-link active" aria-current="page" href="/seller">Vendedor</a>
                             </li>    
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="/client">Calçado</a>
+                                <a class="nav-link active" aria-current="page" href="/shoe">Calçado</a>
                             </li>                     
                         </ul>                
                         </div>

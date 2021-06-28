@@ -1,69 +1,69 @@
 import React from 'react'
-import ClientForm from './ClientForm'
-import ClientList from './ClientList'
+import ShoesForm from './ShoesForm'
+import ShoesList from './ShoesList'
 import Axios from 'axios'
 
-export default class Client extends React.Component{
+export default class Shoes extends React.Component{
     constructor(props){
         super(props)
-        this.BASE_URL = 'http://localhost:8081/api/clientes'
+        this.BASE_URL = 'http://localhost:8081/api/calcados'
         this.state = {
-            clients: [],
+            shoes: [],
             selected: []
         }
     }
 
     componentDidMount(){
-        this.getAllClients()
+        this.getAllShoes()
     }
 
-    getAllClients = async () => {
+    getAllShoes = async () => {
         try{
             let resultado = await Axios.get(this.BASE_URL)
             this.setState({
-                clients: resultado.data
+                shoes: resultado.data
             })
         } catch (err) {
             console.error(err.message)
         }
     }
 
-    saveClient = async (client) => {
+    saveShoes = async (shoe) => {
         try{
-            let result = await Axios.post(this.BASE_URL, client)
-            this.getAllClients()
+            let result = await Axios.post(this.BASE_URL, shoe)
+            this.getAllShoes()
         } catch (err){
             console.error(err.message)
         }
     }
 
-    deleteClient = async (clientId) => {
+    deleteShoes = async (shoetId) => {
         try{
-            let result = await Axios.delete(this.BASE_URL + '/' + clientId)
-            this.getAllClients()
+            let result = await Axios.delete(this.BASE_URL + '/' + shoetId)
+            this.getAllShoes()
         } catch (err){
             console.error(err.message)
         }
     }
 
-    updateClient = async (client) => {
+    updateShoes = async (shoe) => {
         try{
-            let result = await Axios.put(this.BASE_URL + '/' + this.state.selected._id, client)
-            this.getAllClients()
+            let result = await Axios.put(this.BASE_URL + '/' + this.state.selected._id, shoe)
+            this.getAllShoes()
             this.state.selected = []
         } catch (err) {
             console.error(err.message)
         }
     }
 
-    selectClient = (client) => {
-        if(this.state.selected == client){
+    selectShoes = (shoe) => {
+        if(this.state.selected == shoe){
             this.setState({
                 selected: []
             })
         } else {
             this.setState({
-                selected: client
+                selected: shoe
             })
         }
         console.log(this.state.selected)
@@ -75,12 +75,12 @@ export default class Client extends React.Component{
                 <div className="container">
                     <div className="row">                        
                         <div>
-                           <ClientForm post={this.saveClient} put={this.updateClient} selected={this.state.selected} key={this.state.selected._id}></ClientForm>
+                           <ShoesForm post={this.saveShoes} put={this.updateShoes} selected={this.state.selected} key={this.state.selected._id}/>
                         </div>
                     </div>
                     <div className="row">
                         <div class="col" style={{marginTop: '15px'}}>
-                            <ClientList clients={this.state.clients} delete={this.deleteClient} select={this.selectClient}/>
+                            <ShoesList shoes={this.state.shoes} delete={this.deleteShoes} select={this.selectShoes}/>
                         </div>                        
                     </div>
                 </div>
